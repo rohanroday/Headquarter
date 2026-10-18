@@ -21,7 +21,7 @@ export function Contact() {
             <span className="h-px w-10 bg-hq/60" />
             <span>Contact</span>
           </p>
-          <h2 className="font-display text-5xl font-bold leading-[0.95] tracking-tight sm:text-6xl">
+          <h2 data-split className="font-display text-5xl font-bold leading-[0.95] tracking-tight sm:text-6xl">
             Got a brief?
             <br />
             <span className="text-hq">Let&apos;s climb.</span>

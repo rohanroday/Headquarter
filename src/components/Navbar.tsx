@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getLenis } from "@/lib/motion";
 import { nav } from "@/lib/site";
 import { Logo } from "./Logo";
 import { ArrowUpRight } from "./Icons";
@@ -19,6 +20,8 @@ export function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (open) getLenis()?.stop();
+    else getLenis()?.start();
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);

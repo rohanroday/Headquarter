@@ -38,7 +38,7 @@ export function Footer() {
           </div>
         </div>
 
-        <p aria-hidden="true" className="mt-16 select-none font-display text-[clamp(3rem,13vw,11.5rem)] font-extrabold leading-none tracking-tighter text-cream/[0.06]">
+        <p aria-hidden="true" data-wordmark className="mt-16 select-none whitespace-nowrap font-display text-[clamp(2.75rem,12.5vw,11rem)] font-extrabold leading-none tracking-tighter text-cream/[0.06]">
           HEADQUARTER
         </p>
 

@@ -18,7 +18,7 @@ export function SectionHeading({ index, eyebrow, title, intro, className = "" }:
           <span className="h-px w-10 bg-hq/60" />
           <span>{eyebrow}</span>
         </p>
-        <h2 className="font-display text-4xl font-bold leading-[0.95] tracking-tight sm:text-5xl lg:text-6xl">
+        <h2 data-split className="font-display text-4xl font-bold leading-[0.95] tracking-tight sm:text-5xl lg:text-6xl">
           {title}
         </h2>
       </Reveal>

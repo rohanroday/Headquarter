@@ -3,7 +3,7 @@
 A website for **Headquarter**, a media house and creative agency from Gangtok, Sikkim:
 *"The ultimate marketing base camp. Content. Marketing. Events."*
 
-Built with **Next.js 16**, **React 19** and **Tailwind CSS 4**. One fast, fully static page with light and dark mode, a contact form that never loses a lead, and an identity based on the brand's Instagram: the orange HQ badge and the Himalayas.
+Built with **Next.js 16**, **React 19**, **Tailwind CSS 4**, **GSAP** and **Lenis**. One fast, fully static page with light and dark mode, a contact form that never loses a lead, and an identity based on the brand's Instagram: the orange HQ badge and the Himalayas.
 
 ![Hero, dark mode](docs/screenshots/dark-desktop-hero.jpg)
 
@@ -16,6 +16,7 @@ Built with **Next.js 16**, **React 19** and **Tailwind CSS 4**. One fast, fully 
 ## Features
 
 - **Light and dark mode.** A sun/moon toggle in the navbar. It follows the visitor's device setting until they pick a theme, then remembers the choice. The theme is set before the first paint, so the page never flashes the wrong one.
+- **Smooth scrolling and motion.** [Lenis](https://lenis.darkroom.engineering/) smooths the scroll and drives [GSAP](https://gsap.com/) ScrollTrigger on the same frame. There is a hero intro where words rise out of masks and the stats count up, photo parallax, section headings that reveal word by word, a marquee that speeds up and reverses with your scroll, magnetic buttons, and a footer wordmark that settles into place. All of it switches off for visitors who prefer reduced motion. The animations live in [`src/components/Animations.tsx`](src/components/Animations.tsx).
 - **A contact form that always delivers.** Briefs open in WhatsApp or the visitor's email app, already written. No server or API key is needed, so the form can't fail silently. There is also a floating WhatsApp button.
 - **Built for phones first.** Headlines scale to the screen, the mobile menu is full-screen, and there is no sideways scrolling at 375px.
 - **SEO and sharing.** Page metadata, a generated Open Graph share image, `robots.txt`, `sitemap.xml`, JSON-LD business data and an SVG favicon.
@@ -75,10 +76,13 @@ src/
 │   ├── ContactForm.tsx       # WhatsApp / email enquiry form
 │   ├── Navbar.tsx
 │   ├── ThemeToggle.tsx
+│   ├── SmoothScroll.tsx      # Lenis, synced to GSAP
+│   ├── Animations.tsx        # GSAP ScrollTrigger + SplitText animations
 │   ├── MediaSlot.tsx         # Photo with a branded fallback
 │   └── Reveal.tsx            # Scroll-in animation
 └── lib/
     ├── site.ts               # ← all editable content
+    ├── motion.ts             # GSAP plugin registration, shared Lenis instance
     └── theme.ts
 docs/screenshots/             # Images used in this README
 ```

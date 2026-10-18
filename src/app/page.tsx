@@ -1,4 +1,6 @@
+import { Animations } from "@/components/Animations";
 import { Navbar } from "@/components/Navbar";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
@@ -48,6 +50,8 @@ export default function Home() {
       </main>
       <Footer />
       <WhatsAppFab />
+      <SmoothScroll />
+      <Animations />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   );

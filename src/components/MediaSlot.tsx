@@ -23,7 +23,9 @@ export function MediaSlot({ image, alt, tone, label, className = "", sizes = "(m
   return (
     <div className={`relative overflow-hidden bg-gradient-to-br ${tones[tone]} ${className}`}>
       {image ? (
-        <Image src={image} alt={alt} fill sizes={sizes} className="object-cover transition-transform duration-700 group-hover:scale-105" />
+        <div data-parallax>
+          <Image src={image} alt={alt} fill sizes={sizes} className="object-cover transition-transform duration-700 group-hover:scale-105" />
+        </div>
       ) : (
         <>
           <svg viewBox="0 0 400 200" preserveAspectRatio="none" className="absolute inset-x-0 bottom-0 h-3/5 w-full opacity-40" aria-hidden="true">
