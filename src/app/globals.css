@@ -1,26 +1,131 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+/* Theme tokens. "ink" is always the page background and "cream" the main text,
+   so they flip between themes. "night" and "snow" never flip: they are for text
+   sitting on orange or on photos. */
+:root,
+:root[data-theme="dark"] {
+  --ink: #0f0d0b;
+  --ink-2: #1a1714;
+  --ink-3: #26211d;
+  --line: #332c26;
+  --cream: #f4ede2;
+  --muted: #a39887;
+  --hq: #ef6327;
+  --hq-light: #ff8a52;
+  --ridge-far: #1d1916;
+  --ridge-near: #141210;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --ink: #f6f0e6;
+  --ink-2: #efe6d8;
+  --ink-3: #e5d9c6;
+  --line: #ddcfbb;
+  --cream: #1c1611;
+  --muted: #6f6253;
+  --hq: #e2581c;
+  --hq-light: #b9440f;
+  --ridge-far: #e8dccb;
+  --ridge-near: #efe6d8;
+  color-scheme: light;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-cream: var(--cream);
+  --color-muted: var(--muted);
+  --color-hq: var(--hq);
+  --color-hq-light: var(--hq-light);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --color-night: #0f0d0b;
+  --color-snow: #f6f0e6;
+  --color-pine: #2f5d50;
+
+  --font-display: var(--font-bricolage);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+
+  --animate-marquee: marquee 40s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: var(--hq);
+  color: var(--color-night);
+}
+
+/* Scroll reveal: content is only hidden when JS is running, so it never disappears for crawlers or no-JS visitors */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Subtle film grain over the whole page */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--cream);
+}
+
+/* Slow drift on the hero photo */
+.hero-photo {
+  animation: hero-drift 24s ease-in-out infinite alternate;
+}
+@keyframes hero-drift {
+  from { transform: scale(1.04); }
+  to { transform: scale(1.12) translateX(-1.5%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo { animation: none; }
+}
+
+/* Light paper doesn't need as much grain */
+[data-theme="light"] .grain::after {
+  opacity: 0.035;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .animate-marquee { animation: none; }
 }
