@@ -23,7 +23,7 @@ export function MediaSlot({ image, alt, tone, label, className = "", sizes = "(m
   return (
     <div className={`relative overflow-hidden bg-gradient-to-br ${tones[tone]} ${className}`}>
       {image ? (
-        <div data-parallax>
+        <div data-parallax className="absolute inset-x-0 -inset-y-[12%]">
           <Image src={image} alt={alt} fill sizes={sizes} className="object-cover transition-transform duration-700 group-hover:scale-105" />
         </div>
       ) : (
