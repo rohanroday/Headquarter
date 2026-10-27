@@ -20,7 +20,7 @@ export function About() {
 
         <div className="mt-16 grid gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <MediaSlot image={photos.about} alt="A film crew setting up a camera on location" tone="orange" label="On set" className="aspect-[4/3] rounded-3xl" />
+            <MediaSlot image={photos.about} alt="A group gathered at a festival booth during Chirbirey River Fest" tone="orange" label="On the ground · Chirbirey River Fest" className="aspect-[4/3] rounded-3xl" />
           </Reveal>
           <Reveal delay={120} className="flex flex-col justify-center">
             <p className="text-xl leading-relaxed text-cream/90 sm:text-2xl">
